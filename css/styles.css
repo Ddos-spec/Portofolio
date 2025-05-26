@@ -1,0 +1,134 @@
+/* Extracted Tailwind custom styles and additional CSS */
+
+.text-cursor {
+    border-right: 3px solid rgba(255,255,255,.75);
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.theme-dracula {
+    --color-bg: #282a36;
+    --color-bg-secondary: #44475a;
+    --color-text: #f8f8f2;
+    --color-primary: #bd93f9;
+    --color-secondary: #ff79c6;
+    --color-accent: #50fa7b;
+}
+
+.theme-solarized {
+    --color-bg: #002b36;
+    --color-bg-secondary: #073642;
+    --color-text: #839496;
+    --color-primary: #268bd2;
+    --color-secondary: #2aa198;
+    --color-accent: #859900;
+}
+
+.theme-monokai {
+    --color-bg: #272822;
+    --color-bg-secondary: #3E3D32;
+    --color-text: #F8F8F2;
+    --color-primary: #66D9EF;
+    --color-secondary: #AE81FF;
+    --color-accent: #A6E22E;
+}
+
+.theme-light {
+    --color-bg: #ffffff;
+    --color-bg-secondary: #f3f4f6;
+    --color-text: #1f2937;
+    --color-primary: #3b82f6;
+    --color-secondary: #8b5cf6;
+    --color-accent: #10b981;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.bg-primary {
+    background-color: var(--color-primary);
+}
+
+.text-primary {
+    color: var(--color-primary);
+}
+
+.border-primary {
+    border-color: var(--color-primary);
+}
+
+.bg-secondary {
+    background-color: var(--color-bg-secondary);
+}
+
+.skill-bar {
+    height: 8px;
+    background-color: var(--color-bg-secondary);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.skill-progress {
+    height: 100%;
+    background-color: var(--color-primary);
+    border-radius: 4px;
+    transition: width 1.5s ease-out;
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.project-overlay {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--color-primary);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.mobile-menu {
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+}
+
+.mobile-menu.open {
+    transform: translateX(0);
+}
+
+@media (max-width: 768px) {
+    .hero-content {
+        flex-direction: column;
+    }
+    
+    .hero-text {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .hero-image {
+        width: 100%;
+        margin-top: 2rem;
+    }
+}
