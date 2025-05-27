@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const swiper = new Swiper('.swiper-container', {
         slidesPerView: 1,
         spaceBetween: 20,
-        loop: true,
+        loop: false,
+        autoplay: false,
         pagination: {
             el: '.swiper-pagination',
             clickable: true,
