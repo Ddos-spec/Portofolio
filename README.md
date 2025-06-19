@@ -1,3 +1,0 @@
-# Portofolio
-
-Semoga keterima kerja 
