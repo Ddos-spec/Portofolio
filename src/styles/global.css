@@ -237,7 +237,7 @@ body.modal-open {
 /* Tech Stack Marquee */
 .tech-stack {
     width: 100%;
-    padding: 2rem 0;
+    padding: 3rem 0; /* Adjusted to 3rem per request */
     background-color: var(--card-bg-color);
     border-bottom: 1px solid var(--border-color);
     overflow: hidden;
@@ -246,27 +246,89 @@ body.modal-open {
     width: 100%;
     overflow: hidden;
     white-space: nowrap;
+    /* Fade-out effect on edges */
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
 .marquee-content {
     display: inline-block;
-    animation: marquee 20s linear infinite;
+    animation: marquee 25s linear infinite;
+}
+/* Pause on Hover */
+.marquee-container:hover .marquee-content {
+    animation-play-state: paused;
 }
 .marquee-content i {
     font-size: 2.5rem;
-    margin: 0 30px;
-    color: var(--secondary-text-color);
+    margin: 0 40px; /* Spacing slightly increased */
+    color: var(--secondary-text-color); /* Default gray */
     transition: color 0.3s ease, transform 0.3s ease;
 }
 .marquee-content i:hover {
-    color: var(--primary-color);
-    transform: scale(1.2);
+    transform: scale(1.3); /* Slightly larger zoom */
 }
+
+/* Brand Colors on Hover */
+.marquee-content .fa-html5:hover { color: #e34f26; }
+.marquee-content .fa-css3-alt:hover { color: #1572b6; }
+.marquee-content .fa-js:hover { color: #f7df1e; }
+.marquee-content .fa-react:hover { color: #61dafb; }
+.marquee-content .fa-node-js:hover { color: #339933; }
+.marquee-content .fa-git-alt:hover { color: #f05032; }
+.marquee-content .fa-bootstrap:hover { color: #7952b3; }
+.marquee-content .fa-database:hover { color: #00758f; }
+
 @keyframes marquee {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
 
-/* 5. GENERAL SECTION STYLES */
+/* SCROLL ANIMATION (AOS-like) */
+.fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* FOOTER */
+.main-footer {
+    padding: 3rem 5%;
+    background-color: var(--card-bg-color);
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    margin-top: auto;
+}
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+.footer-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+.footer-links a:hover {
+    color: var(--primary-color);
+}
+.footer-quote {
+    font-style: italic;
+    color: var(--secondary-text-color);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+.copyright {
+    color: var(--secondary-text-color);
+    font-size: 0.85rem;
+}
+
+/* 9. MODAL PROYEK */
 .section h2 {
     font-size: 2.5rem;
     text-align: center;

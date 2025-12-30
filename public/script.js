@@ -92,6 +92,28 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mulai efek typing
     if (typingElement) type();
 
+    // =================================================================
+    // SCROLL ANIMATION (AOS-like)
+    // =================================================================
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px" // Trigger animation slightly before element is fully in view
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                // Optional: Stop observing once visible (uncomment next line to animate only once)
+                // observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-up').forEach(el => {
+        observer.observe(el);
+    });
+
     // Daftarkan plugin GSAP
 
 
