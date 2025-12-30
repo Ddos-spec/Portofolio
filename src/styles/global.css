@@ -10,7 +10,18 @@
     --card-bg-color: #fafafa;
     --primary-color: #0095f6; /* Biru Instagram */
     --accent-gradient: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+    --navbar-bg: rgba(255, 255, 255, 0.9);
     --navbar-height: 70px;
+}
+
+/* Instagram-like Dark Mode */
+[data-theme="dark"] {
+    --bg-color: #000000;
+    --text-color: #f5f5f5;
+    --secondary-text-color: #a8a8a8;
+    --border-color: #363636;
+    --card-bg-color: #121212;
+    --navbar-bg: rgba(0, 0, 0, 0.9);
 }
 
 /* 2. GENERAL STYLES & LAYOUT BARU */
@@ -21,7 +32,7 @@
 }
 
 html {
-    scroll-behavior: auto; /* Dibuat auto agar GSAP yang mengontrol */
+    scroll-behavior: smooth;
 }
 
 body {
@@ -29,19 +40,20 @@ body {
     line-height: 1.6;
     background-color: var(--bg-color);
     color: var(--text-color);
-    height: 100vh;
-    overflow: hidden; /* Scroll body utama dimatikan */
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
 }
 
 body.modal-open {
     overflow: hidden;
 }
 
-/* Container utama sekarang dikontrol JS, bukan scroll-snap */
+/* Container utama sekarang dikontrol browser native scroll */
 .scroll-container {
-    height: 100%;
     width: 100%;
-    overflow-y: scroll; /* Scroll ada di sini */
+    overflow: visible;
 }
 
 .scroll-container > section {
@@ -52,6 +64,7 @@ body.modal-open {
     padding: var(--navbar-height) 5% 5%;
     border-bottom: 1px solid var(--border-color);
     width: 100%;
+    transition: border-color 0.3s ease;
 }
 
 /* 3. NAVBAR STYLING */
@@ -59,13 +72,14 @@ body.modal-open {
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: var(--navbar-bg);
     backdrop-filter: blur(10px);
     z-index: 1000;
     height: var(--navbar-height);
     display: flex;
     align-items: center;
     border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 .nav-container {
     display: flex;
@@ -82,11 +96,13 @@ body.modal-open {
     font-weight: normal;
     color: var(--text-color);
     text-decoration: none;
+    transition: color 0.3s ease;
 }
 .nav-menu {
     display: flex;
     list-style: none;
     gap: 2rem;
+    align-items: center; /* Center align items including toggle */
 }
 .nav-menu a {
     color: var(--text-color);
@@ -99,10 +115,39 @@ body.modal-open {
     color: var(--primary-color);
 }
 
+/* Theme Toggle Button */
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 5px;
+    margin-left: 10px;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+.theme-toggle:hover {
+    color: var(--primary-color);
+    transform: rotate(15deg);
+}
+
+/* Warna Ikon Spesifik */
+.theme-toggle .fa-moon {
+    color: #555555; /* Abu-abu gelap agar kontras di bg putih */
+}
+
+.theme-toggle .fa-sun {
+    color: #ffce00; /* Kuning cerah untuk matahari */
+}
+
+[data-theme="dark"] .theme-toggle .fa-moon {
+    color: #ffffff; /* Putih jika user melihat bulan di mode gelap (transisi) */
+}
 
 /* 4. HERO SECTION */
 .hero {
     background-color: var(--bg-color);
+    transition: background-color 0.3s ease;
 }
 .hero-content {
     display: flex;
@@ -129,7 +174,7 @@ body.modal-open {
 }
 .hero-text h1 {
     font-size: 3.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 .hero-text p {
     font-size: 1.2rem;
@@ -137,20 +182,88 @@ body.modal-open {
     color: var(--secondary-text-color);
     max-width: 600px;
 }
-.cta-button {
+
+/* Typing Effect */
+.typing-text {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+.cursor {
     display: inline-block;
+    width: 2px;
+    background-color: var(--text-color);
+    animation: blink 1s infinite;
+    margin-left: 2px;
+}
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Hero Buttons */
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     padding: 12px 28px;
     background: var(--primary-color);
     color: #ffffff;
     text-decoration: none;
     border-radius: 8px;
     font-weight: bold;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
     cursor: pointer;
+    border: 1px solid transparent;
 }
 .cta-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(0, 149, 246, 0.3);
+}
+.outline-btn {
+    background: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--primary-color);
+}
+.outline-btn:hover {
+    background: var(--primary-color);
+    color: #ffffff;
+}
+
+/* Tech Stack Marquee */
+.tech-stack {
+    width: 100%;
+    padding: 2rem 0;
+    background-color: var(--card-bg-color);
+    border-bottom: 1px solid var(--border-color);
+    overflow: hidden;
+}
+.marquee-container {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.marquee-content {
+    display: inline-block;
+    animation: marquee 20s linear infinite;
+}
+.marquee-content i {
+    font-size: 2.5rem;
+    margin: 0 30px;
+    color: var(--secondary-text-color);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+.marquee-content i:hover {
+    color: var(--primary-color);
+    transform: scale(1.2);
+}
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 
 /* 5. GENERAL SECTION STYLES */
@@ -177,7 +290,7 @@ body.modal-open {
     align-items: center;
 }
 .project-card {
-    background-color: var(--bg-color);
+    background-color: var(--card-bg-color); /* Updated to use variable */
     border-radius: 15px;
     border: 1px solid var(--border-color);
     width: 100%;
@@ -185,17 +298,17 @@ body.modal-open {
     height: 550px;
     display: flex;
     overflow: hidden;
-    transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
 .project-card img { width: 45%; object-fit: cover; flex-shrink: 0; }
 .project-content { padding: 2rem; display: flex; flex-direction: column; }
 .project-section { margin-bottom: 1.5rem; }
-.project-section h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem; }
+.project-section h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--text-color); }
 .project-section ul { list-style: none; padding-left: 0; }
 .project-section li { color: var(--secondary-text-color); font-size: 0.95rem; }
 .project-buttons { margin-top: auto; padding-top: 1rem; align-self: flex-start; display: flex; gap: 12px; }
-.project-button-detail { padding: 8px 24px; background-color: #ffffff; color: var(--text-color); border: 1px solid var(--border-color); text-decoration: none; border-radius: 8px; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
-.project-button-detail:hover { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); transform: translateY(-1px); }
+.project-button-detail { padding: 8px 24px; background-color: var(--bg-color); color: var(--text-color); border: 1px solid var(--border-color); text-decoration: none; border-radius: 8px; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
+.project-button-detail:hover { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); transform: translateY(-1px); background-color: var(--card-bg-color); border-color: var(--text-color); }
 .project-button { padding: 8px 24px; background-color: var(--primary-color); color: #ffffff; border: none; text-decoration: none; border-radius: 8px; font-weight: 500; transition: all 0.3s ease; }
 .project-button:hover { background-color: #007ac1; }
 .swiper-button-next, .swiper-button-prev { color: var(--primary-color); }
@@ -211,12 +324,12 @@ body.modal-open {
 .certificates-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 2rem; max-height: 280px; overflow: hidden; transition: max-height 0.7s ease-in-out; }
 .certificates-grid.expanded { max-height: 1000px; }
 .certificate-card { text-align: center; }
-.certificate-card a { display: block; aspect-ratio: 4/3; border-radius: 10px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid var(--border-color); }
+.certificate-card a { display: block; aspect-ratio: 4/3; border-radius: 10px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; border: 1px solid var(--border-color); background-color: var(--card-bg-color); }
 .certificate-card a:hover { transform: scale(1.05); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); }
 .certificate-card img { width: 100%; height: 100%; object-fit: cover; }
 .certificate-title { color: var(--secondary-text-color); font-weight: 500; margin-top: 0.75rem; }
 
-.view-more-overlay { position: absolute; bottom: 0; left: 0; right: 0; height: 150px; display: flex; justify-content: center; align-items: center; background: linear-gradient(to top, var(--bg-color) 40%, transparent); transition: opacity 0.3s ease; }
+.view-more-overlay { position: absolute; bottom: 0; left: 0; right: 0; height: 150px; display: flex; justify-content: center; align-items: center; background: linear-gradient(to top, var(--bg-color) 40%, transparent); transition: opacity 0.3s ease, background 0.3s ease; }
 .view-more-overlay.hidden { opacity: 0; pointer-events: none; }
 .view-more-button { padding: 12px 32px; background: var(--primary-color); color: #ffffff; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
 .view-more-button:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 149, 246, 0.3); }
@@ -228,8 +341,8 @@ body.modal-open {
 .contact-info-wrapper { padding-top: 1rem; }
 .contact-info-wrapper h3 { font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-color); font-weight: 600; }
 .form-group { margin-bottom: 1.5rem; }
-.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
-.form-group input, .form-group textarea { width: 100%; padding: 12px; background-color: #fcfcfc; border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-color); font-size: 1rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--text-color); }
+.form-group input, .form-group textarea { width: 100%; padding: 12px; background-color: var(--card-bg-color); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-color); font-size: 1rem; transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease; }
 .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(0, 149, 246, 0.1); }
 .submit-button { width: auto; align-self: flex-start; padding: 12px 32px; margin-top: 1rem; background: var(--primary-color); color: white; border: none; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; }
 .submit-button:hover { background-color: #007ac1; }
@@ -245,7 +358,7 @@ body.modal-open {
 /* 9. MODAL PROYEK */
 .modal-overlay {display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.8); z-index: 2000; justify-content: center; align-items: center;}
 .modal-overlay.active {display: flex;}
-.modal-content {background-color: var(--bg-color); border-radius: 12px; max-width: 900px; width: 90%; max-height: 80vh; display: flex; overflow: hidden; position: relative;}
+.modal-content {background-color: var(--card-bg-color); border-radius: 12px; max-width: 900px; width: 90%; max-height: 80vh; display: flex; overflow: hidden; position: relative; border: 1px solid var(--border-color); transition: background-color 0.3s ease;}
 .modal-close {position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--secondary-text-color); z-index: 10;}
 .modal-left {width: 50%; background-color: #000;}
 .modal-project-image {width: 100%; height: 100%; object-fit: cover;}
@@ -257,8 +370,8 @@ body.modal-open {
 .modal-section:last-child {margin-bottom: 0;}
 .modal-section h3 {color: var(--text-color); margin-bottom: 0.75rem; font-size: 1.1rem; font-weight: 600;}
 .modal-section p {color: var(--secondary-text-color); line-height: 1.6; font-size: 0.95rem;}
-.modal-nav {position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(255, 255, 255, 0.8); border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 18px; color: var(--text-color); transition: all 0.3s ease; z-index: 5;}
-.modal-nav:hover {background-color: rgba(255, 255, 255, 0.95); transform: translateY(-50%) scale(1.1);}
+.modal-nav {position: absolute; top: 50%; transform: translateY(-50%); background-color: var(--bg-color); border: 1px solid var(--border-color); border-radius: 50%; width: 40px; height: 40px; cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 18px; color: var(--text-color); transition: all 0.3s ease; z-index: 5;}
+.modal-nav:hover {background-color: var(--card-bg-color); transform: translateY(-50%) scale(1.1);}
 .modal-nav-prev {left: 10px;}
 .modal-nav-next {right: 10px;}
 

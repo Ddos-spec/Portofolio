@@ -17,65 +17,101 @@ const stories = ['ig story1.mp4', 'ig story2.mp4', 'ig story3.mp4'];
 let currentStoryIndex = 0;
 
 document.addEventListener('DOMContentLoaded', function() {
-
-    // Daftarkan plugin GSAP
-    gsap.registerPlugin(ScrollToPlugin);
-
+    
     // =================================================================
-    // SISTEM SCROLL UTAMA
+    // THEME TOGGLE LOGIC
     // =================================================================
-    const mainContainer = document.getElementById('mainContainer');
-    const sections = document.querySelectorAll('#mainContainer > section');
-    let currentSectionIndex = 0;
-    let isScrolling = false;
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = themeToggleBtn ? themeToggleBtn.querySelector('i') : null;
+    const htmlElement = document.documentElement;
 
-    function goToSection(index) {
-        if (isScrolling || index < 0 || index >= sections.length) return;
-        isScrolling = true;
-        currentSectionIndex = index;
-        let targetElement = sections[index];
-        let targetScrollY = targetElement.offsetTop;
-        gsap.to(mainContainer, {
-            scrollTo: { y: targetScrollY, autoKill: false },
-            duration: 1,
-            ease: "power2.inOut",
-            onComplete: () => setTimeout(() => { isScrolling = false; }, 300)
+    // Check for saved user preference, if any, on load
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+        htmlElement.setAttribute('data-theme', 'dark');
+        if (themeIcon) {
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+    }
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+
+            if (themeIcon) {
+                themeIcon.classList.toggle('fa-moon');
+                themeIcon.classList.toggle('fa-sun');
+            }
         });
     }
 
-    mainContainer.addEventListener('wheel', (e) => {
-        if (isScrolling) { e.preventDefault(); return; }
-        const currentSection = sections[currentSectionIndex];
-        const isSectionScrollable = currentSection.scrollHeight > currentSection.clientHeight;
-        if (isSectionScrollable) {
-            const scrollTop = mainContainer.scrollTop;
-            const sectionTop = currentSection.offsetTop;
-            const isAtTop = scrollTop <= sectionTop;
-            const isAtBottom = scrollTop >= (sectionTop + currentSection.scrollHeight - currentSection.clientHeight - 2);
-            if ((e.deltaY > 0 && !isAtBottom) || (e.deltaY < 0 && !isAtTop)) return;
+    // =================================================================
+    // TYPING EFFECT
+    // =================================================================
+    const typingElement = document.getElementById('typing-text');
+    const phrases = ["Frontend Developer", "UI/UX Enthusiast", "Fast Learner", "Problem Solver"];
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typeSpeed = 100;
+
+    function type() {
+        if (!typingElement) return;
+
+        const currentPhrase = phrases[phraseIndex];
+        
+        if (isDeleting) {
+            typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
+            charIndex--;
+            typeSpeed = 50; // Lebih cepat saat menghapus
+        } else {
+            typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
+            charIndex++;
+            typeSpeed = 100; // Normal saat mengetik
         }
-        e.preventDefault();
-        goToSection(currentSectionIndex + (e.deltaY > 0 ? 1 : -1));
-    });
-    
+
+        if (!isDeleting && charIndex === currentPhrase.length) {
+            isDeleting = true;
+            typeSpeed = 2000; // Tunggu sebentar setelah selesai mengetik
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            typeSpeed = 500; // Tunggu sebentar sebelum mengetik kata baru
+        }
+
+        setTimeout(type, typeSpeed);
+    }
+
+    // Mulai efek typing
+    if (typingElement) type();
+
+    // Daftarkan plugin GSAP
+
+
     // =================================================================
-    // NAVIGASI
+    // NAVIGASI (Updated for Native Smooth Scroll)
     // =================================================================
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    // Close mobile menu when a link is clicked
     const allNavLinks = document.querySelectorAll('.nav-menu a, .mobile-menu a, .cta-button');
     allNavLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetIndex = parseInt(this.getAttribute('data-index'));
-            if (!isNaN(targetIndex)) {
-                goToSection(targetIndex);
+        link.addEventListener('click', function() {
+            if (hamburger && mobileMenu) {
                 hamburger.classList.remove('active');
                 mobileMenu.classList.remove('active');
             }
         });
     });
 
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobile-menu');
     if (hamburger && mobileMenu) {
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
@@ -235,13 +271,5 @@ document.addEventListener('DOMContentLoaded', function() {
         updateProjectModalContent(newIndex);
     });
 
-    // --- FORM SUBMIT SIMULATION ---
-    const contactForm = document.querySelector('.contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! This is a demo form.');
-            contactForm.reset();
-        });
-    }
+    // --- FORM SUBMIT SIMULATION REMOVED FOR NETLIFY ---
 });

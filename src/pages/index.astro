@@ -23,6 +23,11 @@ import '../styles/global.css';
                 <li><a href="#projects" data-index="1">Projects</a></li>
                 <li><a href="#certificates" data-index="2">Certificates</a></li>
                 <li><a href="#contact" data-index="3">Contact</a></li>
+                <li>
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
             </ul>
             
             <div class="hamburger" id="hamburger">
@@ -48,11 +53,42 @@ import '../styles/global.css';
                 <img src="/fotoprofil.jpg" alt="Your Profile Picture" class="profile-picture">
                 <div class="hero-text">
                     <h1>Fadjar Aryo Seto</h1>
-                    <p>Where art meets algorithm. A curated chaos of my visual and logical explorations.</p>
-                    <a href="#projects" class="cta-button" data-index="1">View My Work</a>
+                    <p>I am a <span id="typing-text" class="typing-text"></span><span class="cursor">|</span></p>
+                    <p class="hero-description">Where art meets algorithm. A curated chaos of my visual and logical explorations.</p>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="cta-button" data-index="1">View My Work</a>
+                        <a href="/cv-fadjar-aryo-seto.pdf" download class="cta-button outline-btn">Download CV <i class="fas fa-download"></i></a>
+                    </div>
                 </div>
             </div>
         </section>
+
+        <!-- Tech Stack Section (Infinite Marquee) -->
+        <div class="tech-stack">
+            <div class="marquee-container">
+                <div class="marquee-content">
+                    <i class="fab fa-html5" title="HTML5"></i>
+                    <i class="fab fa-css3-alt" title="CSS3"></i>
+                    <i class="fab fa-js" title="JavaScript"></i>
+                    <i class="fab fa-react" title="React"></i>
+                    <i class="fab fa-node-js" title="Node.js"></i>
+                    <i class="fab fa-git-alt" title="Git"></i>
+                    <i class="fab fa-bootstrap" title="Bootstrap"></i>
+                    <i class="fab fa-wordpress" title="WordPress"></i>
+                    <i class="fas fa-database" title="SQL"></i>
+                    <!-- Duplicate for seamless loop -->
+                    <i class="fab fa-html5" title="HTML5"></i>
+                    <i class="fab fa-css3-alt" title="CSS3"></i>
+                    <i class="fab fa-js" title="JavaScript"></i>
+                    <i class="fab fa-react" title="React"></i>
+                    <i class="fab fa-node-js" title="Node.js"></i>
+                    <i class="fab fa-git-alt" title="Git"></i>
+                    <i class="fab fa-bootstrap" title="Bootstrap"></i>
+                    <i class="fab fa-wordpress" title="WordPress"></i>
+                    <i class="fas fa-database" title="SQL"></i>
+                </div>
+            </div>
+        </div>
 
         <section class="section" id="projects">
             <h2>My Projects</h2>
@@ -210,7 +246,11 @@ import '../styles/global.css';
             <h2>Contact Me</h2>
             <div class="contact-container">
                 <div class="contact-form-wrapper">
-                    <form class="contact-form" action="#" method="POST">
+                    <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                        <input type="hidden" name="form-name" value="contact" />
+                        <div class="hidden" style="display: none;">
+                            <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+                        </div>
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" id="name" name="name" required>
@@ -235,7 +275,7 @@ import '../styles/global.css';
                         <a href="https://github.com/Ddos-spec" aria-label="GitHub"><i class="fab fa-github"></i></a>
                         <a href="https://www.facebook.com/profile.php?id=100081610536615" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
                         <a href="https://www.instagram.com/djaryost_/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/qr/PFI67VHHNDZ2J1" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://wa.me/6285771518231" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
