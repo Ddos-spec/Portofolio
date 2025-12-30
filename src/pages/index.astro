@@ -1,3 +1,6 @@
+---
+import '../styles/global.css';
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +12,6 @@
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav class="navbar" id="navbar">
@@ -43,7 +45,7 @@
     <main class="scroll-container" id="mainContainer">
         <section class="hero" id="home">
             <div class="hero-content">
-                <img src="fotoprofil.jpg" alt="Your Profile Picture" class="profile-picture">
+                <img src="/fotoprofil.jpg" alt="Your Profile Picture" class="profile-picture">
                 <div class="hero-text">
                     <h1>Fadjar Aryo Seto</h1>
                     <p>Where art meets algorithm. A curated chaos of my visual and logical explorations.</p>
@@ -58,7 +60,7 @@
     <div class="swiper-wrapper">
     <div class="swiper-slide">
         <div class="project-card">
-            <img src="show national contiguity.PNG" alt="Project 1">
+            <img src="/show national contiguity.PNG" alt="Project 1">
             <div class="project-content">
                 <div class="project-section"><h3>Peran Saya</h3><ul><li>Peran: Visualisasi data geografis kompleks jadi grafik jaringan interaktif.</li></ul></div>
                 <div class="project-section"><h3>Proses</h3><ul><li>Ambil JSON eksternal, parse & render D3.js dengan node bendera, link perbatasan, plus drag‑zoom‑pan.</li></ul></div>
@@ -72,7 +74,7 @@
     </div>
     <div class="swiper-slide">
         <div class="project-card">
-            <img src="global meteorite.PNG" alt="Project 2">
+            <img src="/global meteorite.PNG" alt="Project 2">
             <div class="project-content">
                 <div class="project-section"><h3>Peran Saya</h3><ul><li>Mengembangkan aplikasi visualisasi pendaratan meteorit global interaktif.</li></ul></div>
                 <div class="project-section"><h3>Proses</h3><ul><li>Ambil data JSON API, render peta dunia dengan D3.js & TopoJSON, titik meteorit diskalakan berdasarkan massa, plus tooltip on‑hover.</li></ul></div>
@@ -86,7 +88,7 @@
     </div>
     <div class="swiper-slide">
         <div class="project-card">
-            <img src="projek laundryku.PNG" alt="Project 3">
+            <img src="/projek laundryku.PNG" alt="Project 3">
             <div class="project-content">
                 <div class="project-section"><h3>Peran Saya</h3><ul><li> Merancang & membangun sistem informasi manajemen laundry web full‑stack, dari desain database hingga fitur transaksi dan laporan.</li></ul></div>
                 <div class="project-section"><h3>Proses</h3><ul><li>Backend pakai PHP native & MySQL; frontend dengan HTML, CSS (Bootstrap & Materialize) dan JavaScript (AJAX); generate PDF invoice/laporan via spipu/html2pdf (Composer).</li></ul></div>
@@ -100,7 +102,7 @@
     </div>
     <div class="swiper-slide">
         <div class="project-card">
-            <img src="projek todolist.PNG" alt="Project 4">
+            <img src="/projek todolist.PNG" alt="Project 4">
             <div class="project-content">
                 <div class="project-section"><h3>Peran Saya</h3><ul><li>Merancang & mengembangkan aplikasi To‑Do List fungsional dengan antarmuka bersih dan intuitif.</li></ul></div>
                 <div class="project-section"><h3>Proses</h3><ul><li>Struktur HTML + CSS (termasuk dark mode) untuk tampilan; JavaScript modular untuk CRUD tugas; data disimpan di localStorage; fitur filter (all/completed/pending) dan progress bar.</li></ul></div>
@@ -114,9 +116,9 @@
     </div>
     <div class="swiper-slide">
          <div class="project-card">
-            <img src="projekwmccopy.PNG" alt="Project 5">
+            <img src="/projekwmccopy.PNG" alt="Project 5">
             <div class="project-content">
-                <div class="project-section"><h3>Peran Saya</h3><ul><li>Bertanggung jawab penuh atas reverse engineering dan replikasi statis identik situs wimcycle.com, meliputi semua struktur halaman, aset visual, dan fungsionalitas front‑end.</li></ul></div>
+                <div class="project-section"><h3>Peran Saya</h3><ul><li>Bertanggung jawab penuh atas reverse engineering dan replikasi statis identik situs wimcycle.com, meliputi semua struktur halaman, aset visual, dan fungsionalitas front‑end.</li></ul></div>
                 <div class="project-section"><h3>Proses</h3><ul><li>Unduh dan susun ulang HTML, CSS, JavaScript, gambar, dan dokumen (PDF) dengan hierarki direktori dan penamaan file persis sama; analisis DOM dan aset untuk mendokumentasikan arsitektur front‑end secara offline.</li></ul></div>
                 <div class="project-section"><h3>Apa yang Saya Pelajari</h3><ul><li>Mendalami arsitektur WordPress kompleks, manajemen ribuan aset dan dependensi, teknik penelusuran aset, serta pentingnya ketelitian dalam mereplikasi sistem digital untuk analisis dan pembelajaran.</li></ul></div>
                 <div class="project-buttons">
@@ -139,61 +141,61 @@
                 <div class="certificates-grid" id="certificatesGrid">
     <div class="certificate-card">
         <a href="https://www.freecodecamp.org/certification/fcc-d5e232f7-c5b3-4a51-99d1-cc8ab2aa8324/responsive-web-design" target="_blank" rel="noopener noreferrer">
-            <img src="sertif/sertif responsif design.PNG" alt="Sertifikat 1">
+            <img src="/sertif/sertif responsif design.PNG" alt="Sertifikat 1">
         </a>
         <p class="certificate-title">Responsive Web Design</p>
     </div>
     <div class="certificate-card">
         <a href="https://www.freecodecamp.org/certification/fcc-d5e232f7-c5b3-4a51-99d1-cc8ab2aa8324/javascript-algorithms-and-data-structures-v8" target="_blank" rel="noopener noreferrer">
-            <img src="sertif/javascrip and data structure.PNG" alt="Sertifikat 2">
+            <img src="/sertif/javascrip and data structure.PNG" alt="Sertifikat 2">
         </a>
         <p class="certificate-title">JavaScript Algorithms and Data Structures</p>
     </div>
     <div class="certificate-card">
         <a href="https://www.freecodecamp.org/certification/fcc-d5e232f7-c5b3-4a51-99d1-cc8ab2aa8324/front-end-development-libraries" target="_blank" rel="noopener noreferrer">
-            <img src="sertif/front end libraries.PNG" alt="Sertifikat 3">
+            <img src="/sertif/front end libraries.PNG" alt="Sertifikat 3">
         </a>
         <p class="certificate-title">Front End Development Libraries</p>
     </div>
     <div class="certificate-card">
         <a href="https://www.freecodecamp.org/certification/fcc-d5e232f7-c5b3-4a51-99d1-cc8ab2aa8324/data-visualization" target="_blank" rel="noopener noreferrer">
-            <img src="sertif/data visualization.PNG" alt="Sertifikat 4">
+            <img src="/sertif/data visualization.PNG" alt="Sertifikat 4">
         </a>
         <p class="certificate-title">Data Visualization</p>
     </div>
     <div class="certificate-card">
         <a href="https://www.freecodecamp.org/certification/fcc-d5e232f7-c5b3-4a51-99d1-cc8ab2aa8324/full-stack" target="_blank" rel="noopener noreferrer">
-            <img src="sertif/legacy full stack.PNG" alt="Sertifikat 5">
+            <img src="/sertif/legacy full stack.PNG" alt="Sertifikat 5">
         </a>
         <p class="certificate-title">Legacy Full Stack Certification</p>
     </div>
     <div class="certificate-card">
         <a href="https://www.freecodecamp.org/certification/fcc-d5e232f7-c5b3-4a51-99d1-cc8ab2aa8324/legacy-front-end" target="_blank" rel="noopener noreferrer">
-            <img src="sertif/legacy front end.PNG" alt="Sertifikat 6">
+            <img src="/sertif/legacy front end.PNG" alt="Sertifikat 6">
         </a>
         <p class="certificate-title">Legacy Front End</p>
     </div>
     <div class="certificate-card">
         <a href="https://www.freecodecamp.org/certification/fcc-d5e232f7-c5b3-4a51-99d1-cc8ab2aa8324/javascript-algorithms-and-data-structures" target="_blank" rel="noopener noreferrer">
-            <img src="sertif/legacy javascript algortythme.PNG" alt="Sertifikat 7">
+            <img src="/sertif/legacy javascript algortythme.PNG" alt="Sertifikat 7">
         </a>
         <p class="certificate-title">Legacy JavaScript Algorithms and Data Structures</p>
     </div>
     <div class="certificate-card">
         <a href="https://www.freecodecamp.org/certification/fcc-d5e232f7-c5b3-4a51-99d1-cc8ab2aa8324/legacy-back-end" target="_blank" rel="noopener noreferrer">
-            <img src="sertif/legacy back end.PNG" alt="Sertifikat 8">
+            <img src="/sertif/legacy back end.PNG" alt="Sertifikat 8">
         </a>
         <p class="certificate-title">Legacy Back End</p>
     </div>
     <div class="certificate-card">
         <a href="https://www.freecodecamp.org/certification/fcc-d5e232f7-c5b3-4a51-99d1-cc8ab2aa8324/legacy-data-visualization" target="_blank" rel="noopener noreferrer">
-            <img src="sertif/data visualization.PNG" alt="Sertifikat 9">
+            <img src="/sertif/data visualization.PNG" alt="Sertifikat 9">
         </a>
         <p class="certificate-title">Legacy Data Visualization</p>
     </div>
     <div class="certificate-card">
         <a href="https://www.freecodecamp.org/certification/fcc-d5e232f7-c5b3-4a51-99d1-cc8ab2aa8324/information-security-and-quality-assurance" target="_blank" rel="noopener noreferrer">
-            <img src="sertif/legacy informaton security assurance.PNG" alt="Sertifikat 10">
+            <img src="/sertif/legacy informaton security assurance.PNG" alt="Sertifikat 10">
         </a>
         <p class="certificate-title">Legacy Information Security and Quality Assurance</p>
     </div>
@@ -250,7 +252,7 @@
             </div>
             <div class="modal-right" id="modalContent">
                 <div class="modal-author-info">
-                    <img src="fotoprofil.jpg" alt="Author Profile" class="modal-author-photo">
+                    <img src="/fotoprofil.jpg" alt="Author Profile" class="modal-author-photo">
                     <span class="modal-author-name">djaryost_</span>
                 </div>
                 <div class="modal-section">
@@ -275,7 +277,7 @@
                 </div>
             <div class="story-header">
                 <div class="story-user-info">
-                    <img src="fotoprofil.jpg" alt="User" class="story-user-pic">
+                    <img src="/fotoprofil.jpg" alt="User" class="story-user-pic">
                     <span class="story-user-name">djaryost_</span>
                 </div>
                 <button class="story-close" id="storyClose">&times;</button>
@@ -286,12 +288,12 @@
         </div>
     </div>
     
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" is:inline></script>
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" is:inline></script>
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" is:inline></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" is:inline></script>
     
-    <script src="script.js"></script>
+    <script src="/script.js" is:inline></script>
 </body>
 </html>
